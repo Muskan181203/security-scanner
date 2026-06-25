@@ -36,7 +36,23 @@ func RunSemgrep(repoPath string) ([]models.Vulnerability, error) {
 	var semgrepResponse models.SemgrepResponse
 
 	err = json.Unmarshal(output, &semgrepResponse)
+
+
+fmt.Println("Total Results:", len(semgrepResponse.Results))
+
+if len(semgrepResponse.Results) == 0 {
+	fmt.Println("No vulnerabilities found by Semgrep")
+} else {
 	fmt.Printf("%+v\n", semgrepResponse.Results[0])
+}
+
+
+
+
+
+
+	
+	
 	if err != nil {
 		return nil, err
 	}

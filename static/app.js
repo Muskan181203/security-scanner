@@ -48,6 +48,11 @@ async function scanRepo() {
             <h2 class="mb-3">
                 Scan Results
             </h2>
+            <a
+    href="/report"
+    class="btn btn-success mb-3">
+    Download Report
+</a>
 
             <div class="alert alert-${riskClass}">
                 <strong>Risk Level:</strong>

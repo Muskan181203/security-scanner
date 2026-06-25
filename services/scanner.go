@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 )
-
+	var LastScan models.ScanResponse
 func RunScan(repoURL string) (*models.ScanResponse, error) {
 	startTime := time.Now()
 	repoPath, err := CloneRepo(repoURL)
@@ -45,10 +45,10 @@ func RunScan(repoURL string) (*models.ScanResponse, error) {
 
 	wg.Wait()
 	if semgrepErr != nil {
-		return nil, err
+		return nil, semgrepErr
 	}
 	if gitleaksErr != nil {
-		return nil, err
+		return nil, gitleaksErr
 	}
 	allVulns := append(semgrepVulns, gitleaksVuls...)
 	summaryByType := make(map[string]int)
@@ -91,6 +91,7 @@ func RunScan(repoURL string) (*models.ScanResponse, error) {
 		return severityRank[allVulns[i].Severity] >
 			severityRank[allVulns[j].Severity]
 	})
+
 	response := models.ScanResponse{
 		RepoURL:              repoURL,
 		TotalVulnerabilities: len(allVulns),
@@ -103,5 +104,6 @@ func RunScan(repoURL string) (*models.ScanResponse, error) {
 		SummaryByType:        summaryByType,
 		Vulnerabilities:      allVulns,
 	}
+	LastScan = response
 	return &response, nil
 }

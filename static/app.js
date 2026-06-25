@@ -121,23 +121,23 @@ async function scanRepo() {
                     <tbody>
         `;
 
-      data.vulnerabilities.forEach((v, index) => {
+    data.vulnerabilities.forEach((v, index) => {
 
-    let badge = "secondary";
+    let severityClass = "";
 
     if (v.severity === "ERROR")
-        badge = "danger";
+        severityClass = "severity-error";
 
     if (v.severity === "WARNING")
-        badge = "warning";
+        severityClass = "severity-warning";
 
     if (v.severity === "INFO")
-        badge = "info";
+        severityClass = "severity-info";
 
     html += `
     <tr>
         <td>
-            <span class="badge bg-${badge}">
+            <span class="badge ${severityClass}">
                 ${v.severity}
             </span>
         </td>
@@ -183,7 +183,7 @@ async function scanRepo() {
         // Create Pie Chart
         const ctx = document.getElementById("severityChart");
 
-       new Chart(ctx, {
+    new Chart(ctx, {
     type: "pie",
     data: {
         labels: ["Errors", "Warnings", "Info"],
@@ -192,12 +192,23 @@ async function scanRepo() {
                 data.error_count,
                 data.warning_count,
                 data.info_count
-            ]
+            ],
+            backgroundColor: [
+                "#dc3545", // Red (Error)
+                "#fd7e14", // Orange (Warning)
+                "#0d6efd"  // Blue (Info)
+            ],
+            borderWidth: 1
         }]
     },
     options: {
         responsive: true,
-        maintainAspectRatio: true
+        maintainAspectRatio: true,
+        plugins: {
+            legend: {
+                position: "right"
+            }
+        }
     }
 });
     } catch (error) {

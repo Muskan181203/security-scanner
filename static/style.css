@@ -1,0 +1,27 @@
+body {
+    background-color: #f5f7fa;
+}
+
+.card {
+    border-radius: 15px;
+}
+
+.severity-error {
+    color: red;
+    font-weight: bold;
+}
+
+.severity-warning {
+    color: orange;
+    font-weight: bold;
+}
+
+.severity-info {
+    color: blue;
+    font-weight: bold;
+}
+
+.table-container {
+    max-height: 500px;
+    overflow-y: auto;
+}

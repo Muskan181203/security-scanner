@@ -7,7 +7,7 @@ import (
 	"os/exec"
 )
 
-func RunGitleaks() ([]models.Vulnerability, error) {
+func RunGitleaks(repoPath string) ([]models.Vulnerability, error) {
 	cmd := exec.Command(
 		"gitleaks",
 		"detect",
@@ -16,7 +16,7 @@ func RunGitleaks() ([]models.Vulnerability, error) {
 		"--report-path=gitleaks.json",
 	)
 	err := cmd.Run()
-	_ = err
+	// _ = err
 	data, err := os.ReadFile("gitleaks.json")
 	if err != nil {
 		return nil, err

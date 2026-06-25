@@ -1,20 +1,29 @@
 package services
 
 import (
-	"os"
+	"fmt"
+
 	"os/exec"
+	"time"
 )
 
-func CloneRepo(repoURL string) error {
+func CloneRepo(repoURL string) (string, error) {
 
-	os.RemoveAll("./repos/project")
+	repoPath := fmt.Sprintf(
+		"./repos/scan-%d",
+		time.Now().UnixNano(),
+	)
 
 	cmd := exec.Command(
 		"git",
 		"clone",
 		repoURL,
-		"./repos/project",
+		repoPath,
 	)
 
-	return cmd.Run()
+	err := cmd.Run()
+	if err != nil {
+		return "", err
+	}
+	return repoPath, nil
 }

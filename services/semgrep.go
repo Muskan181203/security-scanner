@@ -9,12 +9,12 @@ import (
 	"github-security-scanner/models"
 )
 
-func RunSemgrep() ([]models.Vulnerability, error) {
+func RunSemgrep(repoPath string) ([]models.Vulnerability, error) {
 
 	cmd := exec.Command(
 		"semgrep",
 		"scan",
-		"./repos/project",
+		repoPath,
 		"--json",
 		"--quiet",
 	)
@@ -55,60 +55,3 @@ func RunSemgrep() ([]models.Vulnerability, error) {
 
 	return vulnerabilities, nil
 }
-
-// package services
-
-// import (
-// 	"encoding/json"
-// 	"fmt"
-// 	"github-security-scanner/models"
-// 	"os/exec"
-// )
-
-// func RunSemgrep() ([]models.Vulnerability, error) {
-
-// 	// cmd := exec.Command(
-// 	// 	"semgrep",
-// 	// 	"scan",
-// 	// 	"./repos/project",
-// 	// 	"--json",
-// 	// )
-// 	cmd := exec.Command(
-// 		"semgrep",
-// 		"scan",
-// 		"./repos/project",
-// 		"--json",
-// 		"--quiet",
-// 	)
-
-// 	cmd.Env = append(cmd.Env,
-// 		"PYTHONWARNINGS=ignore",
-// 	)
-// 	output, err := cmd.CombinedOutput()
-
-// 	if err != nil {
-// 		fmt.Println("SEMGREP ERROR:", err)
-// 	}
-// 	var semgrepResponse models.SemgrepResponse
-// 	fmt.Println(string(output))
-// 	fmt.Println("FIRST 500 CHARS:")
-
-// 	err = json.Unmarshal(output, &semgrepResponse)
-// 	// err := json.Unmarshal(output, &semgrepResponse)
-
-// 	if err != nil {
-// 	fmt.Println("SEMGREP ERROR:", err)
-// 	fmt.Println("OUTPUT:")
-// 	fmt.Println(string(output))
-// }
-// 	vulnerabilities := []models.Vulnerability{}
-// 	for _, result := range semgrepResponse.Results {
-// 		vulnerabilities = append(vulnerabilities, models.Vulnerability{
-// 			Type:        result.CheckId,
-// 			File:        result.Path,
-// 			Description: result.Extra.Message,
-// 		})
-// 	}
-
-// 	return vulnerabilities, nil
-// }

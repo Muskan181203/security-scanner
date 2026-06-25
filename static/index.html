@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>GitHub Security Scanner</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+
+        <h1 class="text-center mb-4">
+            GitHub Security Scanner
+        </h1>
+
+        <div class="card shadow p-4">
+
+            <div class="mb-3">
+                <label class="form-label">
+                    Repository URL
+                </label>
+
+                <input
+                    type="text"
+                    id="repoUrl"
+                    class="form-control"
+                    placeholder="https://github.com/user/repo">
+            </div>
+
+            <button
+                class="btn btn-primary"
+                onclick="scanRepo()">
+                Scan Repository
+            </button>
+
+        </div>
+
+        <div
+            id="loading"
+            class="text-center mt-4"
+            style="display:none;">
+            <div class="spinner-border"></div>
+            <p>Scanning repository...</p>
+        </div>
+
+        <div id="result" class="mt-4"></div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/static/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    
+
+
+</body>
+
+</html>

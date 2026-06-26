@@ -1,4 +1,95 @@
+
 <!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>GitHub Security Scanner</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+    <h1 class="text-center mb-4">
+        GitHub Security Scanner
+    </h1>
+
+    <!-- Scan Form -->
+    <div class="card shadow p-4">
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Repository URL
+            </label>
+
+            <input
+                type="text"
+                id="repoUrl"
+                class="form-control"
+                placeholder="https://github.com/user/repo">
+
+        </div>
+
+        <button
+            class="btn btn-primary"
+            onclick="scanRepo()">
+
+            Scan Repository
+
+        </button>
+
+    </div>
+
+    <!-- Loading Spinner -->
+
+    <div
+        id="loading"
+        class="text-center mt-4"
+        style="display:none;">
+
+        <div class="spinner-border text-primary"></div>
+
+        <p class="mt-2">
+            Scanning repository...
+        </p>
+
+    </div>
+
+    <!-- Scan Results -->
+
+    <div
+        id="result"
+        class="mt-4">
+
+    </div>
+
+</div>
+
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Your JavaScript -->
+<script src="/static/app.js"></script>
+
+</body>
+
+</html>
+
+<!-- <!DOCTYPE html>
 <html>
 
 <head>
@@ -45,11 +136,25 @@
             <div class="spinner-border"></div>
             <p>Scanning repository...</p>
         </div>
+          <div class="col-md-3">
 
+    <select
+        id="severityFilter"
+        class="form-select"
+        onchange="filterTable()">
+
+        <option value="">All Severities</option>
+        <option value="ERROR">ERROR</option>
+        <option value="WARNING">WARNING</option>
+        <option value="INFO">INFO</option>
+
+    </select>
+
+</div>
         <div id="result" class="mt-4"></div>
 
     </div>
-
+BSON
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/static/app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
@@ -58,4 +163,4 @@
 
 </body>
 
-</html>
+</html> -->

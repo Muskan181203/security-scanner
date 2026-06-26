@@ -58,7 +58,7 @@ func RunScan(repoURL string) (*models.ScanResponse, error) {
 	errorCount := 0
 	warningCount := 0
 	infoCount := 0
-
+    
 	for _, vuln := range allVulns {
 		switch vuln.Severity {
 		case "ERROR":

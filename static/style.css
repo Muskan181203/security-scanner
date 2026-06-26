@@ -43,3 +43,19 @@ body {
     background-color: #0d6efd !important;
     color: white !important;
 }
+/* Severity badges */
+
+.severity-error{
+    background:#dc3545;
+    color:white;
+}
+
+.severity-warning{
+    background:#fd7e14;
+    color:white;
+}
+
+.severity-info{
+    background:#0d6efd;
+    color:white;
+}

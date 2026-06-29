@@ -8,7 +8,9 @@ import (
 	"sync"
 	"time"
 )
-	var LastScan models.ScanResponse
+
+var LastScan *models.ScanResponse
+
 func RunScan(repoURL string) (*models.ScanResponse, error) {
 	startTime := time.Now()
 	repoPath, err := CloneRepo(repoURL)
@@ -58,7 +60,7 @@ func RunScan(repoURL string) (*models.ScanResponse, error) {
 	errorCount := 0
 	warningCount := 0
 	infoCount := 0
-    
+
 	for _, vuln := range allVulns {
 		switch vuln.Severity {
 		case "ERROR":
@@ -71,7 +73,6 @@ func RunScan(repoURL string) (*models.ScanResponse, error) {
 	}
 
 	riskScore := (errorCount * 10) + (warningCount * 5) + (infoCount * 1)
-
 	riskLevel := "LOW"
 	switch {
 	case riskScore > 100:
@@ -104,6 +105,6 @@ func RunScan(repoURL string) (*models.ScanResponse, error) {
 		SummaryByType:        summaryByType,
 		Vulnerabilities:      allVulns,
 	}
-	LastScan = response
+	LastScan = &response
 	return &response, nil
 }

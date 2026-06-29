@@ -105,6 +105,8 @@ async function scanRepo() {
 function buildDashboard(data) {
 
     // Decide risk alert color
+    alert("buildDashboard called");
+     console.log("Dashboard Loaded");
     let riskClass = "success";
 
     if (data.risk_level === "MEDIUM")
@@ -138,6 +140,34 @@ function buildDashboard(data) {
             class="btn btn-danger">
             Download PDF
         </a>
+
+    </div>
+
+</div>
+
+<hr>
+
+<div class="row mb-4">
+
+    <div class="col-md-8">
+
+        <input
+            type="email"
+            id="email"
+            class="form-control"
+            placeholder="Enter recipient email">
+
+    </div>
+
+    <div class="col-md-4">
+
+        <button
+            class="btn btn-primary w-100"
+            onclick="sendReport()">
+
+            Send PDF
+
+        </button>
 
     </div>
 
@@ -559,5 +589,38 @@ function filterTable() {
         }
 
     });
+
+}
+
+async function sendReport() {
+
+    const email =
+        document.getElementById("email").value;
+
+    if (!email) {
+
+        alert("Please enter an email address");
+        return;
+    }
+
+    const response = await fetch("/send-email", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+
+            email: email
+
+        })
+
+    });
+
+    const data = await response.json();
+
+    alert(data.message);
 
 }
